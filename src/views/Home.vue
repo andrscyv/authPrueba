@@ -8,7 +8,14 @@
     <input type="text" name="psw" id="">
     <br>
     <input type="button" value="Login"> -->
-    <input type="button" value="Auth con Google " @click="authGoogle">
+    <div class="buttonGroup">
+      <input v-if="showGoogle" class="niceButton" type="button" value="Ingresar con Google " @click="authGoogle">
+      <input v-if="showFacebook" class="niceButton" type="button" value="Ingresar con Facebook " @click="authFacebook">
+      <input v-if="showTwitter" class="niceButton" type="button" value="Ingresar con Twitter " @click="authTwitter">
+      <input v-if="showGithub" class="niceButton" type="button" value="Ingresar con Github " @click="authGithub">
+      <input v-if="showEmail" class="niceButton" type="button" value="Ingresar con Email " @click="authEmail">
+    </div>
+    
     
  <!--    <div id="firebaseui-auth-container"></div>
     <div id="loader" style="display:none">Loading...</div> -->
@@ -24,6 +31,12 @@ import firebaseui from 'firebaseui'
 export default {
   data(){
     return {
+      showGoogle: true,
+      showFacebook: true,
+      showTwitter: true,
+      showGithub: true,
+      showEmail: true,
+
     }
   },
   name: 'home',
@@ -83,3 +96,17 @@ export default {
     }, */
 }
 </script>
+
+<style>
+  .buttonGroup{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    height: 200px;
+  }
+
+  .niceButton{
+    height: 30px;
+  }
+</style>
