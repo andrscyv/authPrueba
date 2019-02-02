@@ -84,7 +84,6 @@ export default {
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
-    height: 300px;
   }
 
   .niceButton{
@@ -94,6 +93,9 @@ export default {
     color: white;
     box-shadow: 2px 2px grey;
     cursor: pointer;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   #Email{
