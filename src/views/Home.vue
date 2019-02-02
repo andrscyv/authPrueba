@@ -41,6 +41,10 @@ export default {
           exito(res){
             console.log(vm)
             vm.$router.push('autenticado')
+          },
+          error(err){
+            //console.log("Error de componenete FireAuth")
+            console.log(err)
           }
         }
       }

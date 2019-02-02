@@ -1,9 +1,9 @@
 <template>
     <div class="buttonGroup">
       <input v-if="showGoogle" class="niceButton" type="button" value="Ingresar con Google " @click="autenticar(0)" >
-      <input v-if="showFacebook" class="niceButton" type="button" value="Ingresar con Facebook " >
-      <input v-if="showTwitter" class="niceButton" type="button" value="Ingresar con Twitter " >
-      <input v-if="showGithub" class="niceButton" type="button" value="Ingresar con Github " >
+      <input v-if="showFacebook" class="niceButton" type="button" value="Ingresar con Facebook " @click="autenticar(1)" >
+      <input v-if="showTwitter" class="niceButton" type="button" value="Ingresar con Twitter "  @click="autenticar(2)">
+      <input v-if="showGithub" class="niceButton" type="button" value="Ingresar con Github "  @click="autenticar(3)">
       <input v-if="showEmail" class="niceButton" type="button" value="Ingresar con Email " >
     </div>
 </template>
@@ -63,24 +63,9 @@ export default {
             var firebase = this.config.fb
             var provider = new firebase.auth[this.proveedores[proveedor]]()
             var vm = this
-            provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-            firebase.auth().signInWithPopup(provider).then(this.config.callbacks.exito
-                // ...
-        ).catch(function(error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                console.log("ERROR")
-                console.log(errorCode)
-                var errorMessage = error.message;
-                console.log(errorMessage)
-                // The email of the user's account used.
-                var email = error.email;
-                console.log(email)
-                // The firebase.auth.AuthCredential type that was used.
-                var credential = error.credential;
-                console.log(credential)
-                // ...
-        });
+            //provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+            firebase.auth().signInWithPopup(provider).then(this.config.callbacks.exito)
+            .catch(this.config.callbacks.error);
 
         }
     }
