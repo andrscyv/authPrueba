@@ -8,7 +8,8 @@
     <input type="text" name="psw" id="">
     <br>
     <input type="button" value="Login"> -->
-    <input type="button" value="Auth con Google " @click="authGoogle">
+   <!--  <input type="button" value="Auth con Google " @click="authGoogle"> -->
+    <auth :config="config" />
     
  <!--    <div id="firebaseui-auth-container"></div>
     <div id="loader" style="display:none">Loading...</div> -->
@@ -20,18 +21,38 @@
 //import HelloWorld from '@/components/HelloWorld.vue'
 import firebase from 'firebase'
 import firebaseui from 'firebaseui'
+import Auth from '@/components/FireAuth.vue'
 
 export default {
   data(){
+    var vm = this
     return {
+      config:{
+        fb: firebase,
+        proveedores:[
+          {
+            proveedor:'google'
+          },
+          {
+            proveedor:'facebook'
+          },
+        ],
+        callbacks:{
+          exito(res){
+            console.log(vm)
+            vm.$router.push('autenticado')
+          }
+        }
+      }
     }
   },
   name: 'home',
   components: {
     //HelloWorld
+    Auth
   },
   methods:{
-    authGoogle(){
+    /* authGoogle(){
         var provider = new firebase.auth.GoogleAuthProvider()
         var vm = this
         provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
@@ -60,7 +81,7 @@ export default {
         // ...
       });
 
-    }
+    } */
 
   },
    /* mounted() {
