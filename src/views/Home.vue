@@ -8,6 +8,14 @@
     <input type="text" name="psw" id="">
     <br>
     <input type="button" value="Login"> -->
+    <div class="buttonGroup">
+      <a v-for="b in buttons" :key="b.id" class="niceButton" :id="b.name"> <img :src="b.img" class="img"> Ingresar con {{b.name}} </a>
+      <!-- <input v-if="showGoogle" class="niceButton" type="button" value="Ingresar con Google " @click="authGoogle">
+      <input v-if="showFacebook" class="niceButton" type="button" value="Ingresar con Facebook " @click="authFacebook">
+      <input v-if="showTwitter" class="niceButton" type="button" value="Ingresar con Twitter " @click="authTwitter">
+      <input v-if="showGithub" class="niceButton" type="button" value="Ingresar con Github " @click="authGithub">
+      <input v-if="showEmail" class="niceButton" type="button" value="Ingresar con Email " @click="authEmail"> -->
+    </div>
    <!--  <input type="button" value="Auth con Google " @click="authGoogle"> -->
     <auth :config="config" />
     
@@ -27,6 +35,21 @@ export default {
   data(){
     var vm = this
     return {
+
+      buttons:[ 
+        {id: 0, name: "Google", img: require("@/assets/google.png"), show:true},
+        {id: 1, name: "Facebook", img: require("@/assets/facebook.png"), show:true},
+        {id: 2, name: "Twitter", img: require("@/assets/twitter.png"), show:true},
+        {id: 3, name: "Github", img: require("@/assets/github.png"), show:true},
+        {id: 4, name: "Email", img: require("@/assets/email.png"), show:true}
+      ],
+      showGoogle: true,
+      showFacebook: true,
+      showTwitter: true,
+      showGithub: true,
+      showEmail: true,
+
+
       config:{
         fb: firebase,
         proveedores:[
@@ -104,3 +127,46 @@ export default {
     }, */
 }
 </script>
+
+<style>
+  .buttonGroup{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    height: 300px;
+  }
+
+  .niceButton{
+    height: 40px;
+    width: 300px;
+    border-radius: 5px;
+    color: white;
+    box-shadow: 2px 2px grey;
+  }
+
+  #Email{
+    background-color: #dd4b39;
+  }
+
+  #Facebook{
+    background-color: #3B5998;
+  }
+
+  #Twitter{
+    background-color: #55ACEE;
+  }
+
+  #Github{
+    background-color: #24292e;
+  }
+  #Google{
+    color: black;
+  }
+
+  .img{
+    height: 25px;
+    width: 25px;
+    margin-top: 5px;
+  }
+</style>
