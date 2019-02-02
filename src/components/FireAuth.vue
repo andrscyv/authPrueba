@@ -19,7 +19,7 @@ export default {
                 {id: 1, name: "Facebook", img: require("@/assets/facebook.png"), show:true},
                 {id: 2, name: "Twitter", img: require("@/assets/twitter.png"), show:true},
                 {id: 3, name: "Github", img: require("@/assets/github.png"), show:true},
-                {id: 4, name: "Email", img: require("@/assets/email.png"), show:true}
+                {id: 4, name: "Email", img: require("@/assets/email2.png"), show:true}
             ],
         }
     },
@@ -94,11 +94,11 @@ export default {
   }
 
   #Email{
-    background-color: #dd4b39;
+    background-color: #d31800;
   }
 
   #Facebook{
-    background-color: #3B5998;
+    background-color: #3a559f;
   }
 
   #Twitter{
@@ -106,16 +106,18 @@ export default {
   }
 
   #Github{
-    background-color: #24292e;
+    background-color: black;
   }
   #Google{
-    color: black;
+    color: #24292e;
   }
 
   .img{
     height: 25px;
     width: 25px;
     margin-top: 5px;
+    margin-right: 10px;
+    margin-bottom: -2px;
   }
 
 </style>
