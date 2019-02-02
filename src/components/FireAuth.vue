@@ -1,10 +1,6 @@
 <template>
     <div class="buttonGroup">
-      <input v-if="showGoogle" class="niceButton" type="button" value="Ingresar con Google " @click="autenticar(0)" >
-      <input v-if="showFacebook" class="niceButton" type="button" value="Ingresar con Facebook " @click="autenticar(1)" >
-      <input v-if="showTwitter" class="niceButton" type="button" value="Ingresar con Twitter "  @click="autenticar(2)">
-      <input v-if="showGithub" class="niceButton" type="button" value="Ingresar con Github "  @click="autenticar(3)">
-      <input v-if="showEmail" class="niceButton" type="button" value="Ingresar con Email " >
+      <a v-for="b in buttons" :key="b.id" class="niceButton" :id="b.name" @click="autenticar(b.id)"> <img :src="b.img" class="img"> Ingresar con {{b.name}} </a>
     </div>
 </template>
 
@@ -17,7 +13,14 @@ export default {
                 "FacebookAuthProvider",
                 "TwitterAuthProvider",
                 "GithubAuthProvider"
-            ]
+            ],
+            buttons:[ 
+                {id: 0, name: "Google", img: require("@/assets/google.png"), show:true},
+                {id: 1, name: "Facebook", img: require("@/assets/facebook.png"), show:true},
+                {id: 2, name: "Twitter", img: require("@/assets/twitter.png"), show:true},
+                {id: 3, name: "Github", img: require("@/assets/github.png"), show:true},
+                {id: 4, name: "Email", img: require("@/assets/email.png"), show:true}
+            ],
         }
     },
     props:['config'],
@@ -74,5 +77,45 @@ export default {
 </script>
 
 <style>
+  .buttonGroup{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    height: 300px;
+  }
+
+  .niceButton{
+    height: 40px;
+    width: 300px;
+    border-radius: 5px;
+    color: white;
+    box-shadow: 2px 2px grey;
+  }
+
+  #Email{
+    background-color: #dd4b39;
+  }
+
+  #Facebook{
+    background-color: #3B5998;
+  }
+
+  #Twitter{
+    background-color: #55ACEE;
+  }
+
+  #Github{
+    background-color: #24292e;
+  }
+  #Google{
+    color: black;
+  }
+
+  .img{
+    height: 25px;
+    width: 25px;
+    margin-top: 5px;
+  }
 
 </style>
