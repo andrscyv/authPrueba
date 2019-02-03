@@ -1,11 +1,12 @@
 <template>
     <div class="buttonGroup">
-      <a v-for="b in buttons" :key="b.id" class="niceButton" :id="b.name" @click="autenticar(b.id)"> <img :src="b.img" class="img"> Ingresar con {{b.name}} </a>
+      <a v-for="b in buttons" :key="b.id" v-if="shows[b.id]" class="niceButton" :id="b.name" @click="autenticar(b.id)"> <img :src="b.img" class="img"> Ingresar con {{b.name}} </a>
     </div>
 </template>
 
 <script>
 export default {
+    props:['config'],
     data(){
         return {
             proveedores :[
@@ -14,21 +15,22 @@ export default {
                 "TwitterAuthProvider",
                 "GithubAuthProvider"
             ],
+            shows: this.config.shows,
             buttons:[ 
-                {id: 0, name: "Google", img: require("@/assets/google.png"), show:true},
-                {id: 1, name: "Facebook", img: require("@/assets/facebook.png"), show:true},
-                {id: 2, name: "Twitter", img: require("@/assets/twitter.png"), show:true},
-                {id: 3, name: "Github", img: require("@/assets/github.png"), show:true},
-                {id: 4, name: "Email", img: require("@/assets/email.png"), show:true}
-            ],
+                {id: 0, name: "Google", img: require("@/assets/google.png")},
+                {id: 1, name: "Facebook", img: require("@/assets/facebook.png")},
+                {id: 2, name: "Twitter", img: require("@/assets/twitter.png")},
+                {id: 3, name: "Github", img: require("@/assets/github.png")},
+                {id: 4, name: "Email", img: require("@/assets/email2.png")}
+            ]
         }
     },
-    props:['config'],
+    
 
     computed:{
         showGoogle(){
-            //console.log('show')
-           // console.log(this.config)
+            console.log('show')
+            //console.log(this.config)
             return this.tieneProveedor('google',this.config.proveedores)
         },
         showFacebook(){
@@ -50,7 +52,7 @@ export default {
             let encontrado = false;
             let res = true
             while( i < arr.length && !encontrado){
-                //console.log(arr[i].proveedor)
+                console.log(arr[i].proveedor)
                 if(arr[i].hasOwnProperty('proveedor'))
                     encontrado = arr[i].proveedor === nombre
 
@@ -82,7 +84,6 @@ export default {
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
-    height: 300px;
   }
 
   .niceButton{
@@ -91,14 +92,18 @@ export default {
     border-radius: 5px;
     color: white;
     box-shadow: 2px 2px grey;
+    cursor: pointer;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   #Email{
-    background-color: #dd4b39;
+    background-color: #d31800;
   }
 
   #Facebook{
-    background-color: #3B5998;
+    background-color: #3a559f;
   }
 
   #Twitter{
@@ -106,16 +111,18 @@ export default {
   }
 
   #Github{
-    background-color: #24292e;
+    background-color: black;
   }
   #Google{
-    color: black;
+    color: #24292e;
   }
 
   .img{
     height: 25px;
     width: 25px;
     margin-top: 5px;
+    margin-right: 10px;
+    margin-bottom: -2px;
   }
 
 </style>
