@@ -1,8 +1,13 @@
 import Vue from 'vue'
+import './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 import firebase from 'firebase'
+import Vuetify from 'vuetify'
+// import 'vuetify/dist/vuetify.min.css'
+
+Vue.use(Vuetify)
 
 Vue.config.productionTip = false
 var config = {
@@ -21,3 +26,5 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+
