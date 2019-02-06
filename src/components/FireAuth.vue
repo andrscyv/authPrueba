@@ -7,6 +7,8 @@
       <a v-if="showGithub" class="niceButton" id="Github" @click="autenticar(3)"><img :src="imgs[3].img" class="img"> Ingresar con Github</a>
       <a v-if="showEmail" class="niceButton" id="Email" @click="autenticar(4)"><img :src="imgs[4].img" class="img"> Ingresar con Email</a>
        -->
+<!-- <v-icon>fab fa-facebook-f</v-icon> -->
+<!-- https://fontawesome.com/icons/google?style=brands -->
 
         <v-btn round light id="Google">Ingresar con Google</v-btn>
         <v-btn round dark id="Facebook">Ingresar con Facebook</v-btn>
