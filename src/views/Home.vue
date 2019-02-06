@@ -17,15 +17,13 @@ export default {
     return {
       config:{
         fb: firebase,
-        shows:[true, true, false, false, false],
-        //shows:[google, facebook, twitter, github, email],
         proveedores:[
           {
             proveedor:'google'
           },
           {
             proveedor:'facebook'
-          },
+          }
         ],
         callbacks:{
           exito(res){
