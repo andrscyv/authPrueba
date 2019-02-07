@@ -17,7 +17,7 @@ export default {
     return {
       config:{
         fb: firebase,
-        shows:[true, true, false, false, false],
+        shows:[true, true, true,true,true],
         //shows:[google, facebook, twitter, github, email],
         proveedores:[
           {
