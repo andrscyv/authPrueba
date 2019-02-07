@@ -1,6 +1,12 @@
 <template>
     <div class="buttonGroup">
-      <a v-for="b in buttons" :key="b.id" v-if="shows[b.id]" class="niceButton" :id="b.name" @click="autenticar(b.id)"> <img :src="b.img" class="img"> Ingresar con {{b.name}} </a>
+      <!-- <a v-for="b in buttons" :key="b.id" v-if="shows[b.id]" class="niceButton" :id="b.name" @click="autenticar(b.id)"> <img :src="b.img" class="img"> Ingresar con {{b.name}} </a> -->
+      <a v-if="showGoogle" class="niceButton" id="Google" @click="autenticar(0)"><img :src="imgs[0].img" class="img"> Ingresar con Google</a>
+      <a v-if="showFacebook" class="niceButton" id="Facebook" @click="autenticar(1)"><img :src="imgs[1].img" class="img"> Ingresar con Facebook</a>
+      <a v-if="showTwitter" class="niceButton" id="Twitter" @click="autenticar(2)"><img :src="imgs[2].img" class="img"> Ingresar con Twitter</a>
+      <a v-if="showGithub" class="niceButton" id="Github" @click="autenticar(3)"><img :src="imgs[3].img" class="img"> Ingresar con Github</a>
+      <a v-if="showEmail" class="niceButton" id="Email" @click="autenticar(4)"><img :src="imgs[4].img" class="img"> Ingresar con Email</a>
+      
     </div>
 </template>
 
@@ -15,13 +21,12 @@ export default {
                 "TwitterAuthProvider",
                 "GithubAuthProvider"
             ],
-            shows: this.config.shows,
-            buttons:[ 
-                {id: 0, name: "Google", img: require("@/assets/google.png")},
-                {id: 1, name: "Facebook", img: require("@/assets/facebook.png")},
-                {id: 2, name: "Twitter", img: require("@/assets/twitter.png")},
-                {id: 3, name: "Github", img: require("@/assets/github.png")},
-                {id: 4, name: "Email", img: require("@/assets/email2.png")}
+            imgs:[ 
+                {img: require("@/assets/google.png")},
+                {img: require("@/assets/facebook.png")},
+                {img: require("@/assets/twitter.png")},
+                {img: require("@/assets/github.png")},
+                {img: require("@/assets/email2.png")}
             ]
         }
     },
@@ -29,7 +34,7 @@ export default {
 
     computed:{
         showGoogle(){
-            console.log('show')
+            //console.log('show')
             //console.log(this.config)
             return this.tieneProveedor('google',this.config.proveedores)
         },
@@ -52,7 +57,7 @@ export default {
             let encontrado = false;
             let res = true
             while( i < arr.length && !encontrado){
-                console.log(arr[i].proveedor)
+                //console.log(arr[i].proveedor)
                 if(arr[i].hasOwnProperty('proveedor'))
                     encontrado = arr[i].proveedor === nombre
 
