@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Autenticación exitosa !</h1>
-        <input type="button" value="Cerrar sesion" @click="cerrarSesion">
+        <v-btn round outline color="primary" @click="cerrarSesion">Cerrar Sesión</v-btn>
         <p>
             Usuario: {{ usu }}
             <br>
