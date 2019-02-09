@@ -23,6 +23,9 @@ export default {
           },
           {
             proveedor:'facebook'
+          },
+          {
+            proveedor:'email'
           }
         ],
         callbacksBrowser:{

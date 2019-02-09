@@ -1,12 +1,23 @@
 <template>
-    <div class="buttonGroup">
+    <div class="buttonGroup text-xs-center">
       <!-- <a v-for="b in buttons" :key="b.id" v-if="shows[b.id]" class="niceButton" :id="b.name" @click="autenticar(b.id)"> <img :src="b.img" class="img"> Ingresar con {{b.name}} </a> -->
-      <a v-if="showGoogle" class="niceButton" id="Google" @click="autenticar(0)"><img :src="imgs[0].img" class="img"> Ingresar con Google</a>
+      <!-- <a v-if="showGoogle" class="niceButton" id="Google" @click="autenticar(0)"><img :src="imgs[0].img" class="img"> Ingresar con Google</a>
       <a v-if="showFacebook" class="niceButton" id="Facebook" @click="autenticar(1)"><img :src="imgs[1].img" class="img"> Ingresar con Facebook</a>
       <a v-if="showTwitter" class="niceButton" id="Twitter" @click="autenticar(2)"><img :src="imgs[2].img" class="img"> Ingresar con Twitter</a>
       <a v-if="showGithub" class="niceButton" id="Github" @click="autenticar(3)"><img :src="imgs[3].img" class="img"> Ingresar con Github</a>
       <a v-if="showEmail" class="niceButton" id="Email" @click="autenticar(4)"><img :src="imgs[4].img" class="img"> Ingresar con Email</a>
-      
+       -->
+<!-- <v-icon>fab fa-facebook-f</v-icon> -->
+<!-- https://fontawesome.com/icons/google?style=brands -->
+
+    
+
+        <v-btn v-if="showGoogle" class="niceButton" round light id="Google" @click="autenticar(0)"><img :src="imgs[0].img" class="img">  <div class="text"> Ingresar con Google </div></v-btn>
+        <v-btn v-if="showFacebook" class="niceButton" round dark id="Facebook" @click="autenticar(1)"><v-icon class="cool">fab fa-facebook-f</v-icon> <div class="text"> Ingresar con Facebook </div></v-btn>
+        <v-btn v-if="showTwitter" class="niceButton" round dark id="Twitter" @click="autenticar(2)"><v-icon class="cool">fab fa-twitter</v-icon> <div class="text"> Ingresar con Twitter </div></v-btn>
+        <v-btn v-if="showGithub" class="niceButton" round dark id="Github" @click="autenticar(3)"><v-icon class="cool">fab fa-github</v-icon> <div class="text"> Ingresar con Github </div></v-btn>
+        <v-btn v-if="showEmail" class="niceButton" round dark id="Email" @click="autenticar(4)"><v-icon class="cool">far fa-envelope</v-icon> <div class="text"> Ingresar con Email </div></v-btn>
+
     </div>
 </template>
 
@@ -107,18 +118,11 @@ export default {
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
+    
   }
 
   .niceButton{
-    height: 40px;
     width: 300px;
-    border-radius: 5px;
-    color: white;
-    box-shadow: 2px 2px grey;
-    cursor: pointer;
-    margin: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
   }
 
   #Email{
@@ -143,9 +147,22 @@ export default {
   .img{
     height: 25px;
     width: 25px;
-    margin-top: 5px;
     margin-right: 10px;
-    margin-bottom: -2px;
+  }
+  
+  .cool{
+    margin-right:10px;     
+    margin-left: 5px;
+  }
+
+  .fa-google{
+    color: red!important;
+  }
+
+  .text{
+    width: 200px;
+    text-align: left;
+    margin-left: 10px;
   }
 
 </style>
