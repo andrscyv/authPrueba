@@ -5,7 +5,7 @@ import router from './router'
 import store from './store'
 import firebase from 'firebase'
 import Vuetify from 'vuetify'
-// import 'vuetify/dist/vuetify.min.css'
+import 'vuetify/dist/vuetify.min.css'
 
 Vue.use(Vuetify)
 
