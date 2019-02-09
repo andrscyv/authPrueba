@@ -16,8 +16,54 @@
         <v-btn v-if="showFacebook" class="niceButton" round dark id="Facebook" @click="autenticar(1)"><v-icon class="cool">fab fa-facebook-f</v-icon> <div class="text"> Ingresar con Facebook </div></v-btn>
         <v-btn v-if="showTwitter" class="niceButton" round dark id="Twitter" @click="autenticar(2)"><v-icon class="cool">fab fa-twitter</v-icon> <div class="text"> Ingresar con Twitter </div></v-btn>
         <v-btn v-if="showGithub" class="niceButton" round dark id="Github" @click="autenticar(3)"><v-icon class="cool">fab fa-github</v-icon> <div class="text"> Ingresar con Github </div></v-btn>
-        <v-btn v-if="showEmail" class="niceButton" round dark id="Email" @click="autenticar(4)"><v-icon class="cool">far fa-envelope</v-icon> <div class="text"> Ingresar con Email </div></v-btn>
+        <!-- <v-btn v-if="showEmail" class="niceButton" round dark id="Email" @click="autenticar(4)"><v-icon class="cool">far fa-envelope</v-icon> <div class="text"> Ingresar con Email </div></v-btn> -->
 
+        <v-dialog
+            v-model="mailForm"
+            width="500">
+
+            <v-btn v-if="showEmail" class="niceButton" round dark id="Email" @click="autenticar(4)" slot="activator"><v-icon class="cool">far fa-envelope</v-icon> <div class="text"> Ingresar con Email </div></v-btn>
+
+            <v-card>
+                <v-card-title
+                class="headline indigo white--text lighten-1"
+                primary-title
+                >
+                Inicia Sesión o regístrate
+                </v-card-title>
+
+                <v-card-text class="text-xs-center">
+                    <v-form
+                        ref="form"
+                        v-model="valid"
+                        lazy-validation>
+
+                        <v-text-field
+                            v-model="email"
+                            :rules="emailRules"
+                            label="E-mail*"
+                            required
+                        ></v-text-field>
+
+                        <v-text-field
+                        v-model="psswrd"
+                        :rules="pwdRules"
+                        type="password"
+                        label="Contraseña*"
+                        required
+                        ></v-text-field>
+
+                        <v-btn outline round color="warning" @click="registro">Regístrate</v-btn>
+                        <v-btn outline round :disabled="!valid" color="success" @click="validate"> Ingresar </v-btn>
+
+                        
+                    </v-form>
+                </v-card-text>
+
+
+                
+            </v-card>
+        </v-dialog>
     </div>
 </template>
 
@@ -26,6 +72,7 @@ export default {
     props:['config'],
     data(){
         return {
+            mailForm:false,
             proveedores :[
                 "GoogleAuthProvider",
                 "FacebookAuthProvider",
@@ -38,6 +85,16 @@ export default {
                 {img: require("@/assets/twitter.png")},
                 {img: require("@/assets/github.png")},
                 {img: require("@/assets/email2.png")}
+            ],
+            valid: false,
+            email: '',
+            emailRules: [
+                v => !!v || 'E-mail requerido',
+                v => /.+@.+/.test(v) || 'El correo debe de ser válido'
+            ],
+            psswrd: '',
+            pwdRules: [
+            v => !!v || 'Contraseña requerida'
             ]
         }
     },
