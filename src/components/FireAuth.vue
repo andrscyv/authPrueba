@@ -12,11 +12,11 @@
 
     
 
-        <v-btn  class="niceButton" round light id="Google" @click="autenticar(0)"><img :src="imgs[0].img" class="img">  <div class="text"> Ingresar con Google </div></v-btn>
-        <v-btn  class="niceButton" round dark id="Facebook" @click="autenticar(1)"><v-icon class="cool">fab fa-facebook-f</v-icon> <div class="text"> Ingresar con Facebook </div></v-btn>
-        <v-btn  class="niceButton" round dark id="Twitter" @click="autenticar(2)"><v-icon class="cool">fab fa-twitter</v-icon> <div class="text"> Ingresar con Twitter </div></v-btn>
-        <v-btn  class="niceButton" round dark id="Github" @click="autenticar(3)"><v-icon class="cool">fab fa-github</v-icon> <div class="text"> Ingresar con Github </div></v-btn>
-        <v-btn  class="niceButton" round dark id="Email" @click="autenticar(4)"><v-icon class="cool">far fa-envelope</v-icon> <div class="text"> Ingresar con Email </div></v-btn>
+        <v-btn v-if="showGoogle" class="niceButton" round light id="Google" @click="autenticar(0)"><img :src="imgs[0].img" class="img">  <div class="text"> Ingresar con Google </div></v-btn>
+        <v-btn v-if="showFacebook" class="niceButton" round dark id="Facebook" @click="autenticar(1)"><v-icon class="cool">fab fa-facebook-f</v-icon> <div class="text"> Ingresar con Facebook </div></v-btn>
+        <v-btn v-if="showTwitter" class="niceButton" round dark id="Twitter" @click="autenticar(2)"><v-icon class="cool">fab fa-twitter</v-icon> <div class="text"> Ingresar con Twitter </div></v-btn>
+        <v-btn v-if="showGithub" class="niceButton" round dark id="Github" @click="autenticar(3)"><v-icon class="cool">fab fa-github</v-icon> <div class="text"> Ingresar con Github </div></v-btn>
+        <v-btn v-if="showEmail" class="niceButton" round dark id="Email" @click="autenticar(4)"><v-icon class="cool">far fa-envelope</v-icon> <div class="text"> Ingresar con Email </div></v-btn>
 
     </div>
 </template>
