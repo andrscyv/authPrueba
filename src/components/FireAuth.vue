@@ -26,7 +26,7 @@
 
             <v-card>
                 <v-card-title
-                class="headline green white--text lighten-2"
+                class="headline indigo white--text lighten-1"
                 primary-title
                 >
                 Inicia Sesión o regístrate
@@ -39,10 +39,12 @@
                         lazy-validation>
 
                         <v-text-field
-                        v-model="user"
-                        :rules="userRules"
-                        label="Usuario"
+                        v-model="email"
+                        :error-messages="emailErrors"
+                        label="E-mail"
                         required
+                        @input="$v.email.$touch()"
+                        @blur="$v.email.$touch()"
                         ></v-text-field>
 
                         <v-text-field
@@ -70,6 +72,17 @@
 <script>
 export default {
     props:['config'],
+    mixins: [validationMixin],
+
+    validations: {
+      name: { required, maxLength: maxLength(10) },
+      email: { required, email },
+      select: { required },
+      checkbox: {
+        checked (val) {
+          return val
+        }
+      },
     data(){
         return {
             mailForm:false,
@@ -87,7 +100,7 @@ export default {
                 {img: require("@/assets/email2.png")}
             ],
             valid: true,
-            user: '',
+            email: '',
             userRules: [
             v => !!v || 'Usuario requerido'
             ],
