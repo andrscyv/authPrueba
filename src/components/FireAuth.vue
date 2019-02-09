@@ -39,19 +39,17 @@
                         lazy-validation>
 
                         <v-text-field
-                        v-model="email"
-                        :error-messages="emailErrors"
-                        label="E-mail"
-                        required
-                        @input="$v.email.$touch()"
-                        @blur="$v.email.$touch()"
+                            v-model="email"
+                            :rules="emailRules"
+                            label="E-mail*"
+                            required
                         ></v-text-field>
 
                         <v-text-field
                         v-model="psswrd"
                         :rules="pwdRules"
                         type="password"
-                        label="Contraseña"
+                        label="Contraseña*"
                         required
                         ></v-text-field>
 
@@ -72,17 +70,6 @@
 <script>
 export default {
     props:['config'],
-    mixins: [validationMixin],
-
-    validations: {
-      name: { required, maxLength: maxLength(10) },
-      email: { required, email },
-      select: { required },
-      checkbox: {
-        checked (val) {
-          return val
-        }
-      },
     data(){
         return {
             mailForm:false,
@@ -99,10 +86,11 @@ export default {
                 {img: require("@/assets/github.png")},
                 {img: require("@/assets/email2.png")}
             ],
-            valid: true,
+            valid: false,
             email: '',
-            userRules: [
-            v => !!v || 'Usuario requerido'
+            emailRules: [
+                v => !!v || 'E-mail requerido',
+                v => /.+@.+/.test(v) || 'El correo debe de ser válido'
             ],
             psswrd: '',
             pwdRules: [
