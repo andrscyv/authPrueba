@@ -53,7 +53,7 @@
                         required
                         ></v-text-field>
 
-                        <v-btn outline round color="warning" @click="reset">Regístrate</v-btn>
+                        <v-btn outline round color="warning" @click="registro">Regístrate</v-btn>
                         <v-btn outline round :disabled="!valid" color="success" @click="validate"> Ingresar </v-btn>
 
                         
@@ -85,6 +85,15 @@ export default {
                 {img: require("@/assets/twitter.png")},
                 {img: require("@/assets/github.png")},
                 {img: require("@/assets/email2.png")}
+            ],
+            valid: true,
+            user: '',
+            userRules: [
+            v => !!v || 'Usuario requerido'
+            ],
+            psswrd: '',
+            pwdRules: [
+            v => !!v || 'Contraseña requerida'
             ]
         }
     },
@@ -135,6 +144,14 @@ export default {
             firebase.auth().signInWithPopup(provider).then(this.config.callbacks.exito)
             .catch(this.config.callbacks.error);
 
+        },
+        validate () {
+            if (this.$refs.form.validate()) {
+                this.snackbar = true
+            }
+        },
+        registro () {
+            
         }
     }
 
