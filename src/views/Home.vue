@@ -26,6 +26,12 @@ export default {
           },
           {
             proveedor:'email'
+          },
+          {
+            proveedor:'twitter'
+          },
+          {
+            proveedor:'github'
           }
         ],
         callbacksBrowser:{
@@ -67,6 +73,14 @@ export default {
             var credential = error.credential;
             // ...}
             }
+          },
+          onAuth(user){
+            if(user){
+              console.log(user);
+              //alert('autenticado')
+              vm.$router.push('autenticado')
+            }
+
           }
       }
     }

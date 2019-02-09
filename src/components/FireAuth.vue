@@ -54,7 +54,7 @@
                         ></v-text-field>
 
                         <v-btn outline round color="warning" @click="registro">Regístrate</v-btn>
-                        <v-btn outline round :disabled="!valid" color="success" @click="validate"> Ingresar </v-btn>
+                        <v-btn outline round :disabled="!valid" color="success" @click="ingresar"> Ingresar </v-btn>
 
                         
                     </v-form>
@@ -157,21 +157,42 @@ export default {
             
             
         },
-        validate () {
+        ingresar () {
+            var firebase = this.config.fb
+            var vm = this
             if (this.$refs.form.validate()) {
-                this.snackbar = true
+                firebase.auth().signInWithEmailAndPassword(vm.email, vm.psswrd).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // ...
+                });
+
             }
         },
         registro () {
-            
+            var vm = this;
+            if (this.$refs.form.validate()) {
+                this.config.fb.auth().createUserWithEmailAndPassword(vm.email, vm.psswrd).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log(errorMessage)
+                // ...
+                });
+            }
         }
     },
-    mounted(){
+/*     mounted(){
         var firebase = this.config.fb
         if(this.esMovil())
             firebase.auth().getRedirectResult()
             .then(this.config.callbacksMobile.exito)
             .catch(this.config.callbacksMobile.error);
+    }, */
+    created(){
+        var firebase = this.config.fb
+        firebase.auth().onAuthStateChanged(this.config.onAuth);
     }
 
 }
