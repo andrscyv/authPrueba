@@ -22,7 +22,7 @@
             v-model="mailForm"
             width="500">
 
-            <v-btn v-if="showEmail" class="niceButton" round dark id="Email" @click="autenticar(4)" slot="activator"><v-icon class="cool">far fa-envelope</v-icon> <div class="text"> Ingresar con Email </div></v-btn>
+            <v-btn v-if="showEmail" class="niceButton" round dark id="Email" slot="activator"><v-icon class="cool">far fa-envelope</v-icon> <div class="text"> Ingresar con Email </div></v-btn>
 
             <v-card>
                 <v-card-title
@@ -155,6 +155,14 @@ export default {
                 firebase.auth().signInWithPopup(provider).then(this.config.callbacksBrowser.exito)
                 .catch(this.config.callbacksBrowser.error);
             
+            
+        },
+        validate () {
+            if (this.$refs.form.validate()) {
+                this.snackbar = true
+            }
+        },
+        registro () {
             
         }
     },
